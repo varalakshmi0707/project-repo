@@ -1,0 +1,231 @@
+{
+  "generated_at": "2026-04-22T08:54:24.431659+00:00",
+  "input_csv": "cleaned_data.csv",
+  "label_column": "hired",
+  "encoded_columns": [
+    "gender_enc",
+    "race_enc",
+    "education_enc"
+  ],
+  "categories": {
+    "gender_enc": [
+      "Female",
+      "Male"
+    ],
+    "race_enc": [
+      "Asian",
+      "Black",
+      "Hispanic",
+      "White"
+    ],
+    "education_enc": [
+      "Bachelor",
+      "Master",
+      "PhD"
+    ]
+  },
+  "protected_attributes": [
+    "gender_enc",
+    "race_enc",
+    "age_group"
+  ],
+  "privileged_groups_used": {
+    "gender_enc": 1,
+    "race_enc": 3,
+    "age_group": 1
+  },
+  "unprivileged_groups_used": {
+    "gender_enc": 0,
+    "race_enc": 0,
+    "age_group": 0
+  },
+  "bias_scores": {
+    "before": {
+      "gender": {
+        "attr": "gender_enc",
+        "privileged_value": 1,
+        "unprivileged_value": 0,
+        "raw_privileged_value": "Male",
+        "raw_unprivileged_value": "Female",
+        "metrics": {
+          "mean_difference": -0.6666666666666667,
+          "statistical_parity_difference": -0.6666666666666667,
+          "disparate_impact": 0.19999999999999998,
+          "base_rate_unprivileged": 0.16666666666666666,
+          "base_rate_privileged": 0.8333333333333334
+        }
+      },
+      "race": {
+        "attr": "race_enc",
+        "privileged_value": 3,
+        "unprivileged_value": 0,
+        "raw_privileged_value": "White",
+        "raw_unprivileged_value": "Asian",
+        "metrics": {
+          "mean_difference": -0.8917668825161886,
+          "statistical_parity_difference": -0.8917668825161886,
+          "disparate_impact": 0.0888468809073724,
+          "base_rate_unprivileged": 0.08695652173913043,
+          "base_rate_privileged": 0.9787234042553191
+        }
+      },
+      "age": {
+        "attr": "age_group",
+        "privileged_value": 1,
+        "unprivileged_value": 0,
+        "threshold": 40,
+        "metrics": {
+          "mean_difference": NaN,
+          "statistical_parity_difference": NaN,
+          "disparate_impact": NaN,
+          "base_rate_unprivileged": 0.5,
+          "base_rate_privileged": NaN
+        }
+      }
+    },
+    "after_reweighing": {
+      "gender": {
+        "attr": "gender_enc",
+        "privileged_value": 1,
+        "unprivileged_value": 0,
+        "raw_privileged_value": "Male",
+        "raw_unprivileged_value": "Female",
+        "metrics": {
+          "mean_difference": -0.6228070175438597,
+          "statistical_parity_difference": -0.6228070175438597,
+          "disparate_impact": 0.2526315789473684,
+          "base_rate_unprivileged": 0.21052631578947367,
+          "base_rate_privileged": 0.8333333333333334
+        }
+      },
+      "race": {
+        "attr": "race_enc",
+        "privileged_value": 3,
+        "unprivileged_value": 0,
+        "raw_privileged_value": "White",
+        "raw_unprivileged_value": "Asian",
+        "metrics": {
+          "mean_difference": -0.8248772504091653,
+          "statistical_parity_difference": -0.8248772504091653,
+          "disparate_impact": 0.15719063545150502,
+          "base_rate_unprivileged": 0.15384615384615385,
+          "base_rate_privileged": 0.9787234042553191
+        }
+      },
+      "age": {
+        "attr": "age_group",
+        "privileged_value": 1,
+        "unprivileged_value": 0,
+        "threshold": 40,
+        "metrics": {
+          "mean_difference": NaN,
+          "statistical_parity_difference": NaN,
+          "disparate_impact": NaN,
+          "base_rate_unprivileged": 0.5581395348837209,
+          "base_rate_privileged": NaN
+        }
+      }
+    }
+  },
+  "mitigated_weights": {
+    "method": "aif360.preprocessing.Reweighing",
+    "weights": [
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0,
+      0.5,
+      1.0,
+      1.0
+    ]
+  }
+}
