@@ -1,38 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elegant UI</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    background: linear-gradient(135deg,#ffd6e0,#d0f4de,#cdb4db,#a0c4ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.blob{
+    position:absolute;
+    border-radius:50%;
+    filter: blur(50px);
+    opacity:0.6;
+    animation: float 8s infinite ease-in-out;
+}
+.b1{width:260px;height:260px;background:#ffafcc;top:10%;left:5%;}
+.b2{width:220px;height:220px;background:#bde0fe;bottom:10%;right:10%;}
+.b3{width:200px;height:200px;background:#caffbf;top:50%;left:60%;}
+
+@keyframes float{
+    0%{transform:translateY(0px)}
+    50%{transform:translateY(-30px)}
+    100%{transform:translateY(0px)}
+}
+
+.card{
+    width:360px;
+    padding:30px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.25);
+    backdrop-filter: blur(15px);
+    box-shadow:0 10px 40px rgba(0,0,0,0.25);
+    text-align:center;
+}
+
+h2{
+    color:black;
+    font-weight:700;
+    font-style:italic;
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    background:rgba(255,255,255,0.8);
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:20px;
+    background:black;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    background:#333;
+}
+
+.link{
+    margin-top:10px;
+    display:block;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.link a{
+    color:black;
+    text-decoration:none;
+}
+
+.page{display:none;}
+.active{display:block;}
+
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    background:rgba(255,255,255,0.9);
+    padding:25px 30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    text-align:center;
+    transition:0.3s ease;
+    z-index:1000;
+}
+
+.popup.show{
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.popup h3{
+    font-weight:700;
+    color:black;
+    margin-bottom:10px;
+}
+
+.popup p{
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.popup button{
+    width:auto;
+    padding:8px 20px;
+    border-radius:15px;
+}
+
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    display:none;
+    z-index:999;
+}
+
+.overlay.show{
+    display:block;
+}
+</style>
 </head>
+
 <body>
-  <main class="container">
-    <section class="card">
-      <div class="brand">SecurePortal</div>
-      <h1>Home</h1>
-      <p class="subtitle">Upload your file securely and keep your workflow moving.</p>
 
-      <form>
-        <div class="upload-box">
-          <div class="field">
-            <label for="file-upload">Choose a file</label>
-            <input type="file" id="file-upload" name="file-upload" required>
-          </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Upload File</button>
-      </form>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
 
-      <p class="hint">Supported formats depend on your backend configuration.</p>
+<div class="card page active" id="register">
+<h2>Create Account ✨</h2>
+<input type="text" placeholder="Username" id="regUsername">
+<input type="email" placeholder="Email" id="regEmail">
+<input type="password" placeholder="Password" id="regPassword">
+<input type="password" placeholder="Confirm Password" id="regConfirmPassword">
+<button onclick="registerUser()">Register</button>
+<span class="link" onclick="show('login')">Already have account? Login</span>
+</div>
 
-      <div class="nav-links">
-        <a href="register.html">Register</a>
-        <a href="login.html">Login</a>
-      </div>
-    </section>
-  </main>
+<div class="card page" id="login">
+<h2>Welcome Back 💫</h2>
+<input type="email" placeholder="Email" id="loginEmail">
+<input type="password" placeholder="Password" id="loginPassword">
+<button onclick="loginUser()">Login</button>
+<span class="link" onclick="show('register')">Create new account</span>
+</div>
+
+<div class="card page" id="home">
+<h2>Home Page 🏠</h2>
+<p style="color:black;margin-bottom:10px;">You are successfully logged in</p>
+<button onclick="show('upload')">Upload File</button>
+<button onclick="show('login')">Logout</button>
+</div>
+
+<div class="card page" id="upload">
+<h2>Upload File 📁</h2>
+<input type="file" id="fileInput">
+<button onclick="uploadFile()">Upload</button>
+<button onclick="show('home')">Back</button>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+    <h3 id="popupTitle"></h3>
+    <p id="popupMsg"></p>
+    <button onclick="closePopup()">OK</button>
+</div>
+
+<script>
+function show(page){
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+    document.getElementById(page).classList.add('active');
+}
+
+function registerUser(){
+    var username = document.getElementById("regUsername").value.trim();
+    var email = document.getElementById("regEmail").value.trim();
+    var password = document.getElementById("regPassword").value;
+    var confirmPassword = document.getElementById("regConfirmPassword").value;
+
+    if (!username || !email || !password || !confirmPassword) {
+        showPopup("⚠ Oops!", "Please fill all register fields.");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        showPopup("⚠ Oops!", "Passwords do not match.");
+        return;
+    }
+
+    showPopup("✅ Success!", "Registered successfully!");
+    show('login');
+}
+
+function loginUser(){
+    var email = document.getElementById("loginEmail").value.trim();
+    var password = document.getElementById("loginPassword").value;
+
+    if (!email || !password) {
+        showPopup("⚠ Oops!", "Please enter email and password.");
+        return;
+    }
+
+    show('home');
+}
+
+function uploadFile(){
+    var fileInput = document.getElementById("fileInput");
+
+    if(fileInput.files.length === 0){
+        showPopup("⚠ Oops!", "Kindly upload a file first!");
+    } else {
+        showPopup("✅ Success!", "File uploaded successfully!");
+    }
+}
+
+function showPopup(title, message){
+    document.getElementById("popupTitle").innerText = title;
+    document.getElementById("popupMsg").innerText = message;
+    document.getElementById("popup").classList.add("show");
+    document.getElementById("overlay").classList.add("show");
+}
+
+function closePopup(){
+    document.getElementById("popup").classList.remove("show");
+    document.getElementById("overlay").classList.remove("show");
+}
+</script>
+
 </body>
 </html>
