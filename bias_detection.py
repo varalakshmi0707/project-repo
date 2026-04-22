@@ -17,7 +17,7 @@ def _require_aif360() -> None:
         )
 
 
-def _encode_categorical(series: pd.Series) -> Tuple[pd.Series, List[str]]:
+def _encode_categorical(series: pd.Series) -> pd.Series:
     s = series.astype("string").fillna("Unknown").str.strip()
     s = s.mask(s.eq("") | s.str.lower().eq("nan") | s.str.lower().eq("none"), "Unknown")
     cat = pd.Categorical(s)

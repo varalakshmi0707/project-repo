@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <div class="brand">SecurePortal</div>
+      <h1>Home</h1>
+      <p class="subtitle">Upload your file securely and keep your workflow moving.</p>
+
+      <form>
+        <div class="upload-box">
+          <div class="field">
+            <label for="file-upload">Choose a file</label>
+            <input type="file" id="file-upload" name="file-upload" required>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Upload File</button>
+      </form>
+
+      <p class="hint">Supported formats depend on your backend configuration.</p>
+
+      <div class="nav-links">
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
